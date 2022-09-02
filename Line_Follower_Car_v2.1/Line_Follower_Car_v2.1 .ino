@@ -9,8 +9,7 @@
     |cambien1|      |cambien2|      |cambien3|      |cambien4|      |cambien5|
 
 */
-#include <Servo.h>
-servo myservo;
+
 //Khai báo các giá trị PID
 float Kp = 1;
 float Ki = 0;
