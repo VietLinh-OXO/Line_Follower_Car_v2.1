@@ -68,20 +68,20 @@ void setup() {
   digitalWrite(in4, LOW);
   // dừng hệ thống khoảng 1,5 giây để chuẩn bị
   Serial.begin(9600);
-  Serial.println(" READY ");
+ Serial.println(" READY ");
  digitalWrite(den_truoc,0);
-    digitalWrite(den_sau_1,0);
-    digitalWrite(den_sau_2,0);
+    digitalWrite(den_sau_phai,0);
+    digitalWrite(den_sau_trai,0);
     delay(1000);
-  for (int i =5 ; i <= 25500 ; i++)
+  for (int i =1 ; i <= 25500 ; i++)
 {
    analogWrite(den_truoc, i/100);
-   analogWrite(den_sau_1, i/100);
-   analogWrite(den_sau_2, i/100);
+   analogWrite(den_sau_phai, i/100);
+   analogWrite(den_sau_trai, i/100);
 }
  digitalWrite(den_truoc,0);
-    digitalWrite(den_sau_1,0);
-    digitalWrite(den_sau_2,0);
+    digitalWrite(den_sau_phai,0);
+    digitalWrite(den_sau_trai,0);
     delay(100);
   digitalWrite(den_truoc,1);
     digitalWrite(den_sau_phai,1);
@@ -97,7 +97,7 @@ void setup() {
     delay(500);
         digitalWrite(den_truoc,0);
     digitalWrite(den_sau_phai,0);
-    digitalWrite(den_sau_,0);
+    digitalWrite(den_sau_trai,0);
     delay(100);
   Serial.println(" STARTED !!!! ");
   delay(500);
