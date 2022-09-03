@@ -283,3 +283,4 @@ void dunglai() {
   digitalWrite(den_truoc,0);
   digitalWrite(den_sau_phai,1);
   digitalWrite(den_sau_trai,1);
+}
