@@ -20,22 +20,24 @@ float previous_error = 0, previous_I = 0;
 unsigned long hien_tai = 0;
 unsigned long thoi_gian;
 int thoi_gian_cho = 30;  // thời gian để đọc giá trị cảm biến
-
+int den_truoc = ;
+int den_sau_phai = ;
+int den_sau_trai = ; 
 int mau_vach = 1;  // nếu vạch là màu đen thì để giá trị là 1 , vạch màu trắng là 0
 // khai báo các chân kết nối  của cảm biến
-const int cambien1 = A0;  // kết nối với chân out của cảm biến số 1
-const int cambien2 = A1;  // kết nối với chân out của cảm biến số 2
-const int cambien3 = A2;  // kết nối với chân out của cảm biến số 3
-const int cambien4 = A3;  // kết nối với chân out của cảm biến số 4
-const int cambien5 = A4;  // kết nối với chân out của cảm biến số 5
+const int cambien1 = ;  // kết nối với chân out của cảm biến số 1
+const int cambien2 = ;  // kết nối với chân out của cảm biến số 2
+const int cambien3 = ;  // kết nối với chân out của cảm biến số 3
+const int cambien4 = ;  // kết nối với chân out của cảm biến số 4
+const int cambien5 = ;  // kết nối với chân out của cảm biến số 5
 int gtcb[5] = { 0, 0, 0, 0, 0 };
 //khai báo các chân kết nối của l298N
-const int enA = 5;   // kết nối với chân ENA của L298N
-const int in1 = 6;   // kết nối với chân IN_1(hay IN_A) của L298N
-const int in2 = 7;   // kết nối với chân IN_2(hay IN_B) của L298N
-const int in3 = 8;   // kết nối với chân IN_3(hay IN_C) của L298N
-const int in4 = 9;   // kết nối với chân IN_4(hay IN_D) của L298N
-const int enB = 10;  // kết nối với chân ENB của L298N
+const int enA = ;   // kết nối với chân ENA của L298N
+const int in1 = ;   // kết nối với chân IN_1(hay IN_A) của L298N
+const int in2 = ;   // kết nối với chân IN_2(hay IN_B) của L298N
+const int in3 = ;   // kết nối với chân IN_3(hay IN_C) của L298N
+const int in4 = ;   // kết nối với chân IN_4(hay IN_D) của L298N
+const int enB = ;  // kết nối với chân ENB của L298N
 // đặt tốc độ mặc định của động cơ
 int tocdo = 20;  // tốc độ mặc định của xe 1-255
 int flag = 0;
@@ -67,8 +69,36 @@ void setup() {
   // dừng hệ thống khoảng 1,5 giây để chuẩn bị
   Serial.begin(9600);
   Serial.println(" READY ");
-
-  delay(1000);
+ digitalWrite(den_truoc,0);
+    digitalWrite(den_sau_1,0);
+    digitalWrite(den_sau_2,0);
+    delay(1000);
+  for (int i =5 ; i <= 25500 ; i++)
+{
+   analogWrite(den_truoc, i/100);
+   analogWrite(den_sau_1, i/100);
+   analogWrite(den_sau_2, i/100);
+}
+ digitalWrite(den_truoc,0);
+    digitalWrite(den_sau_1,0);
+    digitalWrite(den_sau_2,0);
+    delay(100);
+  digitalWrite(den_truoc,1);
+    digitalWrite(den_sau_phai,1);
+    digitalWrite(den_sau_trai,1);
+    delay(200);
+   digitalWrite(den_truoc,0);
+    digitalWrite(den_sau_phai,0);
+    digitalWrite(den_sau_trai,0);
+    delay(100);
+  digitalWrite(den_truoc,1);
+    digitalWrite(den_sau_phai,1);
+    digitalWrite(den_sau_trai,1);
+    delay(500);
+        digitalWrite(den_truoc,0);
+    digitalWrite(den_sau_phai,0);
+    digitalWrite(den_sau_,0);
+    delay(100);
   Serial.println(" STARTED !!!! ");
   delay(500);
 }
@@ -200,6 +230,9 @@ void dithang() {
   digitalWrite(in2, 1);
   digitalWrite(in3, 0);
   digitalWrite(in4, 1);
+  digitalWrite(den_truoc,1);
+  digitalWrite(den_sau_phai,0);
+  digitalWrite(den_sau_trai,0);
 }
 
 void xoaysangtrai() {
@@ -207,6 +240,9 @@ void xoaysangtrai() {
   digitalWrite(in2, 0);
   digitalWrite(in3, 0);
   digitalWrite(in4, 1);
+    digitalWrite(den_truoc,0);
+  digitalWrite(den_sau_phai,0);
+  digitalWrite(den_sau_trai,1);
 }
 
 void xoaysangphai() {
@@ -214,6 +250,9 @@ void xoaysangphai() {
   digitalWrite(in2, 1);
   digitalWrite(in3, 1);
   digitalWrite(in4, 0);
+   digitalWrite(den_truoc,0);
+  digitalWrite(den_sau_phai,1);
+  digitalWrite(den_sau_trai,0);
 }
 
 void disangtrai() {
@@ -221,6 +260,9 @@ void disangtrai() {
   digitalWrite(in2, 0);
   digitalWrite(in3, 0);
   digitalWrite(in4, 0);
+  digitalWrite(den_truoc,0);
+  digitalWrite(den_sau_phai,0);
+  digitalWrite(den_sau_trai,1);
 }
 
 void disangphai() {
@@ -228,6 +270,9 @@ void disangphai() {
   digitalWrite(in2, 0);
   digitalWrite(in3, 1);
   digitalWrite(in4, 0);
+  digitalWrite(den_truoc,0);
+  digitalWrite(den_sau_phai,1);
+  digitalWrite(den_sau_trai,0);
 }
 
 void dunglai() {
@@ -235,3 +280,6 @@ void dunglai() {
   digitalWrite(in2, 0);
   digitalWrite(in3, 0);
   digitalWrite(in4, 0);
+  digitalWrite(den_truoc,0);
+  digitalWrite(den_sau_phai,1);
+  digitalWrite(den_sau_trai,1);
